@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="navbar shadow-md bg-black/40 backdrop-blur-md text-white fixed top-0 left-0 right-0 z-50">
+      <div className="navbar shadow-md bg-black/40 backdrop-blur-md text-white fixed top-0 left-0 right-0 z-50 font-mon">
         <div className="w-11/12 mx-auto items-center justify-between flex">
           {/* START */}
           <div className="navbar-start">
@@ -44,7 +44,7 @@ function Navbar() {
                 {link}
               </ul>
             </div>
-            <a className=" text-xl">DRAMATIC</a>
+            <a className=" text-xl font-grif text-yellow-400 ">DRAMATIC</a>
           </div>
 
           {/* CENTER */}
