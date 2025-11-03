@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CategoriesNavbar } from "./CategoriesNavbar";
 import toast from "react-hot-toast";
+import MovieCard  from "./MovieCard";
 
 export const MoviGallary = () => {
   const [movies, setMovies] = useState([]);
@@ -20,8 +21,8 @@ export const MoviGallary = () => {
   }, []);
 
   const categories = ["All", ...new Set(movies.map((m) => m.category))];
-  const filterMovis =selectCategory === "All"? movies : movies.filter(m => m.category === selectCategory)
-  const visibleMovies = showAll ? filterMovis : filterMovis.slice(0,8);
+  const filteredMovies =selectCategory === "All"? movies : movies.filter(m => m.category === selectCategory)
+  const visibleMovies = showAll ? filteredMovies : filteredMovies.slice(0,8);
  
 
   return (
@@ -32,8 +33,41 @@ export const MoviGallary = () => {
       selectCategory ={selectCategory}
       setSelctCategory ={ setSelctCategory}
       >
-
       </CategoriesNavbar>
+
+
+      
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <span className="loading loading-dots loading-xl text-yellow-400"></span>
+        </div>
+      ) : filteredMovies.length > 0 ? (
+        <>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {visibleMovies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie}></MovieCard>
+          ))}
+        </div>
+
+
+        {filteredMovies.length > 8 && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="px-6 py-2 bg-yellow-500 text-black font-semibold rounded-full hover:bg-yellow-400 transition-all duration-300"
+              >
+                {showAll ? "Show Less" : "Show More"}
+              </button>
+            </div>
+          )}
+        </>
+
+        
+      ) : (
+        <p className="text-gray-400 text-center">No Movie Found</p>
+      )}
     </div>
   );
 };
+
+export default MoviGallary;

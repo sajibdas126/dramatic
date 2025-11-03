@@ -1,3 +1,5 @@
 1-Deasyui use to creat Navber.
 2-ImageCarousel create -https://swiperjs.com/ Mobile toch slider.
 3-error show toster use kora.
+4-footer a Farmar-motion install.
+5-react-multi-carousel install 
